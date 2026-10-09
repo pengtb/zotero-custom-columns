@@ -1,0 +1,24 @@
+<vbox id="custom-columns-pane" onload="event.waitUntil(Zotero_Preferences.CustomColumns.init())">
+	<html:div class="cc-wrap">
+		<html:div class="cc-head">
+			<html:span id="cc-hint"></html:span>
+			<html:label class="cc-lang">
+				<html:span id="cc-lang-label"></html:span>
+				<html:select id="cc-lang">
+					<html:option xmlns="http://www.w3.org/1999/xhtml" value="zh">中文</html:option>
+					<html:option xmlns="http://www.w3.org/1999/xhtml" value="en">English</html:option>
+				</html:select>
+			</html:label>
+		</html:div>
+		<html:div id="cc-rows"></html:div>
+		<html:datalist id="cc-derived"></html:datalist>
+		<html:div class="cc-actions">
+			<html:button id="cc-add"></html:button>
+			<html:button id="cc-save"></html:button>
+			<html:span id="cc-status" class="cc-status"></html:span>
+		</html:div>
+		<html:div class="cc-foot">
+			<html:span id="cc-foot-label"></html:span><html:span id="cc-path" class="cc-dim"></html:span>
+		</html:div>
+	</html:div>
+</vbox>

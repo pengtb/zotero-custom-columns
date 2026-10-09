@@ -1,0 +1,36 @@
+{
+  "_说明": "改完本文件后，在 Zotero 里按 Ctrl+Shift+J 打开开发者控制台，运行 Zotero.CustomColumns.load() 生效（或重启 Zotero）。文件位置：Zotero 数据目录/custom-columns.json",
+  "columns": [
+    {
+      "label": "Score",
+      "field": "extra",
+      "regex": "Score:\\s*(\\d+)/10",
+      "group": 1,
+      "numeric": true,
+      "width": 60,
+      "bold": true
+    },
+    {
+      "label": "读状态",
+      "field": "extra",
+      "regex": "Read_Status:\\s*([A-Za-z]+)",
+      "width": 70
+    },
+    {
+      "label": "集合",
+      "derived": "collections",
+      "width": 140
+    },
+    {
+      "label": "笔记",
+      "derived": "noteCount",
+      "numeric": true,
+      "width": 45
+    },
+    {
+      "label": "入库日",
+      "derived": "dateAdded",
+      "width": 80
+    }
+  ]
+}

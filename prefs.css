@@ -1,0 +1,84 @@
+/* 设置界面样式。用半透明的灰色而不是硬编码主题色，深色/浅色主题都不会瞎。 */
+.cc-wrap {
+	padding: 8px 2px;
+}
+
+.cc-head {
+	margin-bottom: 10px;
+	color: #6a737d;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	align-items: center;
+}
+
+.cc-lang {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	margin-inline-start: auto;
+	white-space: nowrap;
+}
+
+.cc-row {
+	border: 1px solid rgba(128, 128, 128, 0.35);
+	border-radius: 5px;
+	padding: 6px 8px;
+	margin-bottom: 6px;
+}
+
+.cc-line {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	align-items: center;
+	margin: 3px 0;
+}
+
+.cc-line label {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.cc-line input[type="number"] {
+	width: 58px;
+}
+
+.cc-src {
+	min-width: 120px;
+}
+
+.cc-regex {
+	min-width: 200px;
+}
+
+.cc-btns {
+	margin-left: auto;
+	display: inline-flex;
+	gap: 4px;
+}
+
+.cc-actions {
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.cc-status {
+	color: #1a7f37;
+}
+
+.cc-status.cc-err {
+	color: #cf222e;
+}
+
+.cc-foot {
+	margin-top: 10px;
+	color: #6a737d;
+}
+
+.cc-dim {
+	opacity: 0.85;
+}

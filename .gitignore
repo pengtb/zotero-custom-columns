@@ -1,0 +1,6 @@
+# 打包产物
+custom-columns.xpi
+
+# Python
+__pycache__/
+*.pyc

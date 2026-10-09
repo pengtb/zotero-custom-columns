@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Custom Columns",
+  "version": "0.2.8",
+  "description": "用一份 JSON 配置，给 Zotero 条目列表加任意自定义列（正则提取字段、所在集合、笔记数、阅读状态…）",
+  "author": "ptbia",
+  "icons": {
+    "48": "icon.png",
+    "96": "icon@2x.png"
+  },
+  "applications": {
+    "zotero": {
+      "id": "custom-columns@ptbia",
+      "update_url": "https://raw.githubusercontent.com/pengtb/zotero-custom-columns/main/updates.json",
+      "strict_min_version": "7.0",
+      "strict_max_version": "9.0.*"
+    }
+  }
+}
