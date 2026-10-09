@@ -3,9 +3,9 @@
     "custom-columns@ptbia": {
       "updates": [
         {
-          "version": "0.2.8",
-          "update_link": "https://github.com/pengtb/zotero-custom-columns/releases/download/v0.2.8/custom-columns.xpi",
-          "update_hash": "sha256:d9cbb41f6c7f97663f5d4355e89b7e9eee7566f30b372ce8c69f6b078b10f194",
+          "version": "0.2.9",
+          "update_link": "https://github.com/pengtb/zotero-custom-columns/releases/download/v0.2.9/custom-columns.xpi",
+          "update_hash": "sha256:130353360097805d1bd926a03deac9e8e57f3207364f8bc9475ed330dcb22b6c",
           "applications": {
             "zotero": {
               "strict_min_version": "7.0",

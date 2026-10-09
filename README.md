@@ -71,7 +71,7 @@ python make_icon.py        # 重新生成图标（改配色/形状时用）
 - 只挂在主列表（`enabledTreeIDs` 未指定 = main），Feeds 视图里不出现。
 - 侧栏那条面板名固定显示「自定义列 / Custom Columns」；面板名在注册时就确定，要跟着语言变就得重挂面板（会重载整个偏好窗），不划算。
 - 工具→插件 里显示的插件名/描述是清单里的固定值，不跟界面语言开关走（那需要 `_locales` + `__MSG_…__`）。
-- 更新走本仓库根目录的 `updates.json`（Zotero 按清单里的 `update_url` 拉它比对版本）。发新版流程：改 `manifest.json` 的 `version` → `python build.py` → 打 tag 发 Release 并把 `custom-columns.xpi` 传成附件 → 更新 `updates.json` 的 `version` / `update_link` / `update_hash`。
+- 更新走仓库根目录的 `updates.json`，清单里的 `update_url` 指向它的 **jsDelivr 镜像**（`cdn.jsdelivr.net/gh/…@main/updates.json`）——`raw.githubusercontent.com` 在国内常被连接重置，Zotero 拉不到清单就等于没有自动更新。发新版流程：改 `manifest.json` 的 `version` → `python build.py` → 打 tag 发 Release 并把 `custom-columns.xpi` 传成附件 → 更新 `updates.json` 的 `version` / `update_link` / `update_hash`。（jsDelivr 对分支引用有缓存，新版清单可能延迟几小时生效，Zotero 定期比对，无妨。）
 - Zotero 大版本升级后要改 `manifest.json` 里的 `strict_max_version`。
 
 ## 目录结构
