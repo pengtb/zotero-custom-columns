@@ -1,0 +1,19 @@
+{
+  "addons": {
+    "custom-columns@ptbia": {
+      "updates": [
+        {
+          "version": "0.2.8",
+          "update_link": "https://github.com/pengtb/zotero-custom-columns/releases/download/v0.2.8/custom-columns.xpi",
+          "update_hash": "sha256:d9cbb41f6c7f97663f5d4355e89b7e9eee7566f30b372ce8c69f6b078b10f194",
+          "applications": {
+            "zotero": {
+              "strict_min_version": "7.0",
+              "strict_max_version": "9.0.*"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

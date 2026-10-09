@@ -19,6 +19,8 @@ Zotero 的列只能来自条目字段，所以「评分」「阅读状态」这�
 python build.py     # 生成 custom-columns.xpi
 ```
 
+也可以直接从 [Releases](https://github.com/pengtb/zotero-custom-columns/releases/latest) 下载打包好的 `custom-columns.xpi`，不用自己构建。
+
 Zotero → 工具 → 插件 → 把 `custom-columns.xpi` 拖进窗口（提示未签名，允许即可，社区插件普遍如此）。装完去 工具 → 设置 → **自定义列 / Custom Columns** 配置。
 
 Zotero 7 起可用（当前按 Zotero 9 声明 `strict_max_version: 9.0.*`）。
@@ -63,22 +65,13 @@ python make_icon.py        # 重新生成图标（改配色/形状时用）
 
 设置面板里的失败都是**静默**的（Zotero 不把插件的 JS 错误写进任何日志文件），所以插件自己往数据目录写一份诊断日志：**`<Zotero 数据目录>/custom-columns.log`**——注册了几列、面板走到哪一步、未捕获异常的调用栈，都在里面。列没出现或面板空白时先看它。
 
-## 实现札记（踩过的坑）
-
-- **清单里 `applications.zotero` 有三项必填**：`id`、`update_url`、`strict_max_version`。这是 Zotero 给 Firefox 平台打的补丁（`Extension.sys.mjs` 里对 `type == "extension"` 逐条 `manifestError`），缺任何一个都会在安装时被拒，而且只弹一句笼统的「插件无法安装」。Firefox 的 addons-linter **查不出来**（那边 `update_url` 是可选的）。`build.py` 里有断言拦这条。
-- **注册列的选项类型必须严格匹配** `itemTreeManager.js` 里的 `optionTypeDefinition`：`width` 要**字符串**（给数字则整份选项校验不过），`flex` 要数字，`dataProvider`/`renderCell` 要函数。类型不对不会报错——`registerColumn` 直接静默返回 false，一列都不注册。所以插件把每次注册的结果和失败原因写进日志。
-- **`renderCell` 返回的元素必须自己带 `class="cell " + column.className`**：列宽是动态样式表里的 `.<dataKey>-<styleKey> { width: … }`，作用在带 `cell` class 的元素上；少了这个 class，拖列宽时单元格内容不跟着变（宽度/溢出/省略号都拿不到），看起来还像「对齐不对」。
-- **设置面板是 XHTML(XML) 文档**：`innerHTML` 走 XML 解析器，void 标签没自闭合、命名空间没写对都会**静默失败**（按钮点下去没反应）。所以面板一律用 `createElementNS` 建元素，并挂 `window` 的 error 监听把异常写进日志。
-- **列排序是字符串排序**：数字列必须在取值时补零（返回 `000009`）、显示时再剥零，否则 10 会排在 8 前面。排序与显示分开处理是这套 API 的固有形态。
-- `dataProvider` 每行每次渲染都会被调用，里面不要做 IO（几百条量级无感）。
-
 ## 已知限制
 
 - 设置界面只写配置、不做实时预览；点「保存并应用」才落盘并重建列。
 - 只挂在主列表（`enabledTreeIDs` 未指定 = main），Feeds 视图里不出现。
 - 侧栏那条面板名固定显示「自定义列 / Custom Columns」；面板名在注册时就确定，要跟着语言变就得重挂面板（会重载整个偏好窗），不划算。
 - 工具→插件 里显示的插件名/描述是清单里的固定值，不跟界面语言开关走（那需要 `_locales` + `__MSG_…__`）。
-- `update_url` 指向本仓库的 `updates.json`（Zotero 硬性要求这个字段）。该文件目前不存在，Zotero 校验更新时 404——无害；要做自动更新就发 Release 并补上 `updates.json`。
+- 更新走本仓库根目录的 `updates.json`（Zotero 按清单里的 `update_url` 拉它比对版本）。发新版流程：改 `manifest.json` 的 `version` → `python build.py` → 打 tag 发 Release 并把 `custom-columns.xpi` 传成附件 → 更新 `updates.json` 的 `version` / `update_link` / `update_hash`。
 - Zotero 大版本升级后要改 `manifest.json` 里的 `strict_max_version`。
 
 ## 目录结构
