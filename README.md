@@ -23,7 +23,7 @@ python build.py     # 生成 custom-columns.xpi
 
 Zotero → 工具 → 插件 → 把 `custom-columns.xpi` 拖进窗口（提示未签名，允许即可，社区插件普遍如此）。装完去 工具 → 设置 → **自定义列 / Custom Columns** 配置。
 
-Zotero 7 起可用（当前按 Zotero 9 声明 `strict_max_version: 9.0.*`）。
+Zotero 7 起可用（当前按 Zotero 10 声明 `strict_max_version: 10.*`）。
 
 ## 使用
 
